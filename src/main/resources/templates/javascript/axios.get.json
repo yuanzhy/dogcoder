@@ -1,0 +1,10 @@
+{
+  "prefix": "axios.",
+  "suffix": "get",
+  "desc": "axios.get('url').then()",
+  "label": [
+    "ajax",
+    "http",
+    "get"
+  ]
+}

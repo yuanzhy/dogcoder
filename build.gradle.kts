@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.6.20"
     id("org.jetbrains.intellij") version "1.5.2"
+//    kotlin("plugin.serialization") version "1.7.10"
 }
 
 group = "com.yuanzhy.dogcoder"
@@ -15,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    implementation("com.alibaba:fastjson:1.2.83")
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
@@ -59,8 +61,9 @@ tasks {
     }
 
     runIde {
-        jvmArgs = listOf(
-                "-javaagent:E:\\yuanzhy\\ideatrack\\ja-netfilter-all-2022.1\\ja-netfilter-all\\ja-netfilter.jar=jetbrains"
-        )
+        val jvmConfig = project.rootProject.file("jvm.config")
+        if (jvmConfig.exists()) {
+            jvmArgs = jvmConfig.readLines()
+        }
     }
 }
