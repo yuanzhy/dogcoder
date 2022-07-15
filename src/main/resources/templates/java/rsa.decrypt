@@ -1,0 +1,12 @@
+// RSA私钥解密
+try {
+    //base64编码的私钥
+    byte[] cipherData = xxx; // 密文数据
+    byte[] privateKey = xxx; // 私钥
+    RSAPrivateKey rsaPriKey = (RSAPrivateKey) KeyFactory.getInstance("RSA").generatePrivate(new PKCS8EncodedKeySpec(privateKey));
+    Cipher cipher = Cipher.getInstance("RSA");
+    cipher.init(Cipher.DECRYPT_MODE, rsaPriKey);
+    byte[] result = cipher.doFinal(cipherData);
+} catch (Exception e) {
+    throw new RuntimeException(e);
+}

@@ -1,0 +1,13 @@
+{
+  "prefix": "List",
+  "suffix": "",
+  "desc": "List<Object> list = new ArrayList<>()",
+  "labels": [
+    "arrayList",
+    "newList"
+  ],
+  "imports": [
+    "java.util.List",
+    "java.util.ArrayList"
+  ]
+}

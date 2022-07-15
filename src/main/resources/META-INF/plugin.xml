@@ -21,15 +21,47 @@
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.xml</depends>
-        <!--<depends optional="true">org.jetbrains.plugins.vue</depends>-->
-    <depends>JavaScript</depends>
-<!--    <depends>org.jetbrains.plugins.yaml</depends>-->
+<!--    <depends optional="true">org.jetbrains.kotlin</depends>-->
+    <depends optional="true">org.jetbrains.plugins.yaml</depends>
+    <depends optional="true">org.jetbrains.plugins.go</depends>
+    <!--<depends optional="true">org.jetbrains.plugins.vue</depends>-->
+    <depends optional="true">Pythonid</depends>
+    <depends optional="true">JavaScript</depends>
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.javascript.JavascriptCompletionContributor"
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.js.JavascriptCompletionContributor"
                 language="JavaScript" order="first"/>
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.java.JavaCompletionContributor"
+                language="JAVA" order="first"/>
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.yaml.YamlCompletionContributor"
+                language="yaml" order="first"/>
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.go.GoCompletionContributor"
+                language="go" order="first"/>
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.python.PythonCompletionContributor"
+                language="Python" order="first"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.goide">
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.go.GoCompletionContributor"
+                language="go" order="first"/>
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.yaml.YamlCompletionContributor"
+                language="yaml" order="first"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="Pythonid">
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.python.PythonCompletionContributor"
+                language="Python" order="first"/>
     </extensions>
 </idea-plugin>

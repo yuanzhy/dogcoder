@@ -1,0 +1,55 @@
+{
+  "prefix": "knn",
+  "suffix": "",
+  "desc": "KNN demo",
+  "labels": [
+    "NearestNeighbor"
+  ],
+  "imports": [
+    {
+      "from": "sklearn.neighbors",
+      "import": "KNeighborsClassifier"
+
+    },
+    {
+      "from": "sklearn.datasets",
+      "import": "load_digits"
+    },
+    {
+      "import": "matplotlib.pyplot",
+      "as": "plt"
+    },
+    {
+      "from": "sklearn.model_selection",
+      "import": "train_test_split"
+    },
+    {
+      "from": "sklearn.preprocessing",
+      "import": "StandardScaler"
+    },
+    {
+      "from": "sklearn",
+      "import": "preprocessing"
+    },
+    {
+      "from": "sklearn",
+      "import": "metrics"
+    },
+    {
+      "from": "sklearn.svm",
+      "import": "SVC"
+    },
+    {
+      "from": "sklearn.svm",
+      "import": "SVC"
+    },
+    {
+      "from": "sklearn.naive_bayes",
+      "import": "MultinomialNB"
+    },
+    {
+      "from": "sklearn.tree",
+      "import": "DecisionTreeClassifier"
+    }
+  ]
+}

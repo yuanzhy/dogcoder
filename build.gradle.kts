@@ -21,14 +21,18 @@ dependencies {
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    version.set("IU-221.5080.210")
-    type.set("IU") // Target IDE Platform
+//    version.set("IU-221.5080.210")
+    version.set("IU-221.5921.22")
+//    type.set("IU") // Target IDE Platform
 
     plugins.set(listOf(
             "JavaScriptLanguage",
-            "JavaScriptDebugger",
             "java",
-            "org.jetbrains.plugins.vue:221.5080.169"
+            "yaml",
+            "org.jetbrains.kotlin:221-1.7.10-release-333-IJ5591.52",
+            "Pythonid:221.5080.212",
+            "org.jetbrains.plugins.go:221.5080.210",
+//            "org.jetbrains.plugins.vue:221.5080.169"
     ))
     updateSinceUntilBuild.set(false)
 //    buildSearchableOptions.enabled(false)
@@ -61,7 +65,7 @@ tasks {
     }
 
     runIde {
-        val jvmConfig = project.rootProject.file("jvm.config")
+        val jvmConfig = project.rootProject.file("jvm.ini")
         if (jvmConfig.exists()) {
             jvmArgs = jvmConfig.readLines()
         }

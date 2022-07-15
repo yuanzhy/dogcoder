@@ -2,7 +2,7 @@
   "prefix": "fetch",
   "suffix": "",
   "desc": "fetch('url').then()",
-  "label": [
+  "labels": [
     "ajax",
     "http",
     "get"

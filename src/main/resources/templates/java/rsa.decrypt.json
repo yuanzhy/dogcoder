@@ -1,0 +1,11 @@
+{
+  "prefix": "rsa.decrypt",
+  "suffix": "",
+  "desc": "RSA decryption",
+  "imports": [
+    "java.security.KeyFactory",
+    "java.security.interfaces.RSAPrivateKey",
+    "java.security.spec.PKCS8EncodedKeySpec",
+    "javax.crypto.Cipher"
+  ]
+}

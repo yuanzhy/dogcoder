@@ -2,7 +2,7 @@
   "prefix": "axios.",
   "suffix": "post",
   "desc": "axios.post('url', data).then()",
-  "label": [
+  "labels": [
     "ajax",
     "http",
     "post"

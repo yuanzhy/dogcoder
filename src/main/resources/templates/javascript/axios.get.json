@@ -2,7 +2,7 @@
   "prefix": "axios.",
   "suffix": "get",
   "desc": "axios.get('url').then()",
-  "label": [
+  "labels": [
     "ajax",
     "http",
     "get"

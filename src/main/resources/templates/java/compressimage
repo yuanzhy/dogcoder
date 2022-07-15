@@ -1,0 +1,29 @@
+/*
+ * 按长宽 等比压缩图片
+ */
+final String format = "png"; // 图片格式
+final int max = 800; // 宽或高都不能超过max
+BufferedImage bi = ImageIO.read(xxx); // URL or File or InputStream
+int srcHeight = bi.getHeight();
+int srcWidth = bi.getWidth();
+int height, width;
+// 压缩后一般比较小, 此处先用内存流. 如并发较大请使用文件流
+ByteArrayOutputStream baos = new ByteArrayOutputStream();
+if (srcHeight > srcWidth && srcHeight > max) {
+    height = max;
+    double ratio = ((double) height) / srcHeight;
+    width = (int) (srcWidth * ratio);
+} else if (srcWidth > srcHeight && srcWidth > max) {
+    width = max;
+    double ratio = ((double) width) / srcWidth;
+    height = (int) (srcHeight * ratio);
+} else {
+    return; // 不需要压缩
+}
+Image image = bi.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+BufferedImage tag = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+Graphics g = tag.getGraphics();
+g.drawImage(image, 0, 0, null); // 绘制缩小后的图
+g.dispose();
+ImageIO.write(tag, format, baos);
+byte[] result = baos.toByteArray(); // 压缩后的图片数据

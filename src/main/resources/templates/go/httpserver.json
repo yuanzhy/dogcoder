@@ -1,0 +1,13 @@
+{
+  "prefix": "httpServer",
+  "suffix": "",
+  "desc": "http.ListenAndServe(url)",
+  "imports": [
+    {
+      "import": "fmt"
+    },
+    {
+      "import":  "net/http"
+    }
+  ]
+}

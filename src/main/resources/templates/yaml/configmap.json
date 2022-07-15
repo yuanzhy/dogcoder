@@ -1,0 +1,11 @@
+{
+  "prefix": "configMap",
+  "suffix": "",
+  "desc": "kubernetes.configMap",
+  "labels": [
+    "kubernetes",
+    "k8s",
+    "ks",
+    "docker"
+  ]
+}

@@ -1,5 +1,7 @@
 package com.yuanzhy.dogcoder.ide.intellij
 
+import com.intellij.codeInsight.CodeInsightSettings
+import com.intellij.ide.GeneralSettings
 import com.intellij.ide.plugins.IdeaPluginDescriptor
 import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.extensions.PluginId
@@ -17,5 +19,5 @@ object DogCoderPlugin {
     fun getVersion(): String = getPlugin().version
 //    fun getPluginPath(): Path = getPlugin().pluginPath
 
-    fun getPluginPath(): Path = Path.of("E:\\yuanzhy\\localRepository\\dogcoder\\src\\main\\resources\\")
+    fun getPluginPath(): Path = Path.of("/home/yuanzhy/git/yuanzhy/dogcoder/src/main/resources/")
 }

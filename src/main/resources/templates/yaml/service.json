@@ -1,0 +1,11 @@
+{
+  "prefix": "service",
+  "suffix": "",
+  "desc": "kubernetes.service",
+  "labels": [
+    "kubernetes",
+    "k8s",
+    "ks",
+    "docker"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "prefix": "unzip",
+  "suffix": "",
+  "desc": "unzip the zip file",
+  "imports": [
+    "java.io.File",
+    "java.io.FileInputStream",
+    "java.io.FileOutputStream",
+    "java.io.IOException",
+    "java.util.zip.ZipEntry",
+    "java.util.zip.ZipInputStream"
+  ]
+}

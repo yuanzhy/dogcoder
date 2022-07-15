@@ -1,0 +1,11 @@
+// RSA公钥加密
+try {
+    byte[] clearData = xxx; // 明文数据
+    byte[] publicKey = xxx; // 公钥
+    RSAPublicKey rsaPubKey = (RSAPublicKey) KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKey));
+    Cipher cipher = Cipher.getInstance("RSA");
+    cipher.init(Cipher.ENCRYPT_MODE, rsaPubKey);
+    byte[] result = cipher.doFinal(clearData);
+} catch (Exception e) {
+    throw new RuntimeException(e);
+}

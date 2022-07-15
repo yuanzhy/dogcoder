@@ -1,0 +1,17 @@
+{
+  "prefix": "getRemoteAddress",
+  "suffix": "",
+  "desc": "Supports multi-level agents",
+  "labels": [
+    "remoteHost",
+    "remoteIp",
+    "clientHost",
+    "clientIp"
+  ],
+  "imports": [
+    "java.util.function.Predicate",
+    "javax.servlet.http.HttpServletRequest",
+    "org.springframework.web.context.request.RequestContextHolder",
+    "org.springframework.web.context.request.ServletRequestAttributes"
+  ]
+}

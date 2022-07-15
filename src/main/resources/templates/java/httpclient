@@ -1,0 +1,10 @@
+HttpClient httpClient = HttpClients.custom().build();
+HttpGet httpGet = new HttpGet("url");
+try {
+    HttpResponse response = httpClient.execute(httpGet);
+    String result = EntityUtils.toString(response.getEntity());
+} catch (IOException e) {
+    throw new RuntimeException(e.getMessage(), e);
+} finally {
+    httpGet.releaseConnection();
+}
