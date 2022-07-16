@@ -24,7 +24,7 @@
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.xml</depends>
-<!--    <depends optional="true">org.jetbrains.kotlin</depends>-->
+    <depends optional="true">org.jetbrains.kotlin</depends>
     <depends optional="true">org.jetbrains.plugins.yaml</depends>
     <depends optional="true">org.jetbrains.plugins.go</depends>
     <!--<depends optional="true">org.jetbrains.plugins.vue</depends>-->
@@ -45,6 +45,9 @@
         <completion.contributor
                 implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.go.GoCompletionContributor"
                 language="go" order="first"/>
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.kotlin.KotlinCompletionContributor"
+                language="kotlin" order="first"/>
         <completion.contributor
                 implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.python.PythonCompletionContributor"
                 language="Python" order="first"/>

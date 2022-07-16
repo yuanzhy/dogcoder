@@ -1,0 +1,19 @@
+fun test1() {
+    GlobalScope.launch {
+        val arg1 = sunpendF1()
+        var arg2 = sunpendF2()
+        println("suspend finish arg1:$arg1  arg2:$arg2  result:${arg1 + arg2}")
+    }
+}
+
+private suspend fun sunpendF1(): Int {
+    delay(1000)
+    println("suspend fun 1")
+    return 2
+}
+
+private suspend fun sunpendF2(): Int {
+    delay(1000)
+    println("suspend fun 2")
+    return 4
+}

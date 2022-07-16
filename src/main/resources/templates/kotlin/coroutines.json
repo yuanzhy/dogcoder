@@ -1,0 +1,13 @@
+{
+  "prefix": "coroutines",
+  "suffix": "",
+  "desc": "Kotlin coroutines demo",
+  "labels": [
+    "suspend"
+  ],
+  "imports": [
+    "kotlinx.coroutines.GlobalScope",
+    "kotlinx.coroutines.delay",
+    "kotlinx.coroutines.launch"
+  ]
+}

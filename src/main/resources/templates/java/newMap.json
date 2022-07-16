@@ -2,10 +2,6 @@
   "prefix": "Map",
   "suffix": "",
   "desc": "Map<String, Object> map = new HashMap<>()",
-  "labels": [
-    "hashMap",
-    "newMap"
-  ],
   "imports": [
     "java.util.Map",
     "java.util.HashMap"
