@@ -33,6 +33,8 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <postStartupActivity implementation="com.yuanzhy.dogcoder.ide.intellij.startup.UpdateTemplateStartupActivity" />
+<!--        <applicationConfigurable instance="com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderConfigurable"/>-->
         <completion.contributor
                 implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.js.JavascriptCompletionContributor"
                 language="JavaScript" order="first"/>
@@ -53,18 +55,18 @@
                 language="Python" order="first"/>
     </extensions>
 
-    <extensions defaultExtensionNs="com.goide">
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.go.GoCompletionContributor"
-                language="go" order="first"/>
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.yaml.YamlCompletionContributor"
-                language="yaml" order="first"/>
-    </extensions>
+<!--    <extensions defaultExtensionNs="com.goide">-->
+<!--        <completion.contributor-->
+<!--                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.go.GoCompletionContributor"-->
+<!--                language="go" order="first"/>-->
+<!--        <completion.contributor-->
+<!--                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.yaml.YamlCompletionContributor"-->
+<!--                language="yaml" order="first"/>-->
+<!--    </extensions>-->
 
-    <extensions defaultExtensionNs="Pythonid">
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.python.PythonCompletionContributor"
-                language="Python" order="first"/>
-    </extensions>
+<!--    <extensions defaultExtensionNs="Pythonid">-->
+<!--        <completion.contributor-->
+<!--                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.python.PythonCompletionContributor"-->
+<!--                language="Python" order="first"/>-->
+<!--    </extensions>-->
 </idea-plugin>
