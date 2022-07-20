@@ -14,8 +14,8 @@
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    代码模板智能提示补全<br>
-    <em>most HTML tags may be used</em>
+    代码模板智能提示<br>
+    示例代码生成<br>
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -34,7 +34,8 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.yuanzhy.dogcoder.ide.intellij.startup.UpdateTemplateStartupActivity" />
-<!--        <applicationConfigurable instance="com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderConfigurable"/>-->
+        <applicationConfigurable instance="com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderConfigurable" />
+        <applicationService serviceImplementation="com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettings" />
         <completion.contributor
                 implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.js.JavascriptCompletionContributor"
                 language="JavaScript" order="first"/>
@@ -54,6 +55,14 @@
                 implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.python.PythonCompletionContributor"
                 language="Python" order="first"/>
     </extensions>
+    <actions>
+        <group id="DogCoderNew" text="New DogCoder" popup="true"
+               icon="com.yuanzhy.dogcoder.ide.intellij.common.DcIcons.LOGO_S"
+               class="com.yuanzhy.dogcoder.ide.intellij.create.NewGroup"
+        >
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="NewGroup"></add-to-group>
+        </group>
+    </actions>
 
 <!--    <extensions defaultExtensionNs="com.goide">-->
 <!--        <completion.contributor-->

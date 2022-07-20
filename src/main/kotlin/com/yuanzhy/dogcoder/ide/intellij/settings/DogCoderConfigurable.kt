@@ -10,24 +10,25 @@ import javax.swing.JComponent
  */
 class DogCoderConfigurable : SearchableConfigurable {
 
-    override fun createComponent(): JComponent? {
-        TODO("Not yet implemented")
+    private val ui = ConfigUI()
+    private val settings = DogCoderSettings()
+
+    init {
+        ui.serviceUrlField.text = settings.serviceUrl
+        ui.localPathField.text = settings.localPath
+    }
+    override fun createComponent(): JComponent {
+        return ui.rootPane
     }
 
     override fun isModified(): Boolean {
-        TODO("Not yet implemented")
+        return settings.serviceUrl != ui.serviceUrlField.text
+                || settings.localPath != ui.localPathField.text
     }
 
     override fun apply() {
-//        val newSelect = ui.selectList.selectedItem.toString()
-//        val newIsScroll = ui.scrollCheckbox.isSelected
-//        // 通知变更
-//        ApplicationManager.getApplication().messageBus
-//                .syncPublisher<FormSettingsChangedListener>(FormSettingsChangedListener.TOPIC)
-//                .beforeChange(FormSettings(newSelect, newIsScroll))
-//        // 持久化
-//        formSettings.select = newSelect
-//        formSettings.isScroll = newIsScroll
+        settings.serviceUrl = ui.serviceUrlField.text
+        settings.localPath = ui.localPathField.text
     }
 
     override fun getDisplayName(): String {

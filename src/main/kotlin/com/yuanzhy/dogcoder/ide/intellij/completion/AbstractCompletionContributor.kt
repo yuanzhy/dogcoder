@@ -11,7 +11,7 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.module.ModuleUtil
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
-import com.yuanzhy.dogcoder.ide.intellij.common.Icons
+import com.yuanzhy.dogcoder.ide.intellij.common.DcIcons
 import com.yuanzhy.dogcoder.ide.intellij.common.model.Template
 import com.yuanzhy.dogcoder.ide.intellij.common.model.TemplateCollection
 
@@ -37,7 +37,7 @@ abstract class AbstractCompletionContributor(type: String, protected val insertH
             if (template.isMatch(key)) {
                 val content = getContent(template)
                 val element: LookupElementBuilder = LookupElementBuilder.create(template.imports ?: content, content)
-                        .withIcon(Icons.LOGO_S)
+                        .withIcon(DcIcons.LOGO_S)
                         .withPresentableText(template.prefix)
                         .withTailText(template.suffix)
                         .withTypeText(template.desc, true)
