@@ -71,3 +71,7 @@ tasks {
         }
     }
 }
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(24000, "hours")
+    resolutionStrategy.cacheDynamicVersionsFor(24000, "hours")
+}

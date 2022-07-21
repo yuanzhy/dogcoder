@@ -57,10 +57,10 @@
     </extensions>
     <actions>
         <group id="DogCoderNew" text="New DogCoder" popup="true"
-               icon="com.yuanzhy.dogcoder.ide.intellij.common.DcIcons.LOGO_S"
                class="com.yuanzhy.dogcoder.ide.intellij.create.NewGroup"
+               icon="/META-INF/logo-s.svg"
         >
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="NewGroup"></add-to-group>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="after" relative-to-action="WeighingNewGroup"></add-to-group>
         </group>
     </actions>
 
