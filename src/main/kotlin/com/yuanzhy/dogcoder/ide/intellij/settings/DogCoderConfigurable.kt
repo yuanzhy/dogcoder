@@ -1,6 +1,8 @@
 package com.yuanzhy.dogcoder.ide.intellij.settings
 
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.options.SearchableConfigurable
+import com.yuanzhy.dogcoder.ide.intellij.DogCoderPlugin
 import javax.swing.JComponent
 
 /**
@@ -11,7 +13,7 @@ import javax.swing.JComponent
 class DogCoderConfigurable : SearchableConfigurable {
 
     private val ui = ConfigUI()
-    private val settings = DogCoderSettings()
+    private val settings = DogCoderSettings.getInstance()
 
     init {
         ui.serviceUrlField.text = settings.serviceUrl
@@ -29,6 +31,8 @@ class DogCoderConfigurable : SearchableConfigurable {
     override fun apply() {
         settings.serviceUrl = ui.serviceUrlField.text
         settings.localPath = ui.localPathField.text
+        settings.lastUpdatedMillis = 0
+        DogCoderPlugin.updateTemplatesAsync()
     }
 
     override fun getDisplayName(): String {

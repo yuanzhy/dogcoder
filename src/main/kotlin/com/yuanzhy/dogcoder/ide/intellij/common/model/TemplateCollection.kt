@@ -1,11 +1,14 @@
 package com.yuanzhy.dogcoder.ide.intellij.common.model
 
 import com.alibaba.fastjson.JSON
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.util.io.isDirectory
-import com.yuanzhy.dogcoder.ide.intellij.DogCoderPlugin
+import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettings
+import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettingsListener
 import org.slf4j.LoggerFactory
 import java.nio.file.Files
 import java.nio.file.Path
+import kotlin.io.path.Path
 import kotlin.io.path.extension
 import kotlin.io.path.nameWithoutExtension
 import kotlin.io.path.readBytes
@@ -16,9 +19,17 @@ class TemplateCollection(private val type: String) : Iterable<Template> {
 
     private val templates = ArrayList<Template>()
 
+    init {
+        ApplicationManager.getApplication().messageBus.connect().subscribe(DogCoderSettingsListener.TOPIC, object: DogCoderSettingsListener{
+            override fun afterChanged() {
+                templates.clear()
+            }
+        })
+    }
+
     override fun iterator(): Iterator<Template> {
         if (templates.isEmpty()) {
-            val path = DogCoderPlugin.getPluginPath().resolve("templates/$type")
+            val path = Path(DogCoderSettings.getInstance().localPath,"templates/$type")
             try {
                 iteJson(path)
                 Files.list(path).filter { it.isDirectory() }.forEach {

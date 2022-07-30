@@ -4,12 +4,15 @@ import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.DefaultActionGroup
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.util.io.exists
-import com.yuanzhy.dogcoder.ide.intellij.DogCoderPlugin
+import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettings
+import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettingsListener
 import org.slf4j.LoggerFactory
 import java.nio.file.Files
 import java.nio.file.NotDirectoryException
 import java.nio.file.Path
+import kotlin.io.path.Path
 import kotlin.io.path.absolutePathString
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.name
@@ -18,21 +21,32 @@ class NewGroup: ActionGroup() {
 
     private val logger = LoggerFactory.getLogger(NewGroup::class.java)
 
-    private val children: Array<AnAction>
-    init {
-        val list = ArrayList<AnAction>()
-        val path = DogCoderPlugin.getPluginPath().resolve("samples")
-        if (path.exists()) {
-            try {
-                for(c in Files.list(path)) {
-                    recursive(c, list)
-                }
-            } catch (e: Exception) {
-                logger.warn("获取模板失败：${e.message}")
-            }
+    private var children: Array<AnAction> = emptyArray()
 
+    init {
+        ApplicationManager.getApplication().messageBus.connect().subscribe(DogCoderSettingsListener.TOPIC, object: DogCoderSettingsListener {
+            override fun afterChanged() {
+                children = emptyArray()
+            }
+        })
+    }
+
+    private fun initChildren() {
+        if (children.isEmpty()) {
+            val list = ArrayList<AnAction>()
+            val path = Path(DogCoderSettings.getInstance().localPath, "samples")
+            if (path.exists()) {
+                try {
+                    for(c in Files.list(path)) {
+                        recursive(c, list)
+                    }
+                } catch (e: Exception) {
+                    logger.warn("获取模板失败：${e.message}")
+                }
+
+            }
+            children = list.toTypedArray()
         }
-        children = list.toTypedArray()
     }
 
     private fun recursive(path: Path, list: MutableList<AnAction>) {
@@ -62,6 +76,7 @@ class NewGroup: ActionGroup() {
     }
 
     override fun getChildren(e: AnActionEvent?): Array<AnAction> {
+        initChildren()
         return children
     }
 }
