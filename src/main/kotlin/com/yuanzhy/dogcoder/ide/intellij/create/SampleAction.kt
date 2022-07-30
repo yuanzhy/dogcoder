@@ -42,6 +42,7 @@ class SampleAction(name: String, private val path: String): AnAction(name) {
 //            if (path.isDirectory()) {
 //            }
             val tf = JTextField(path.name)
+            tf.isEditable = false
             pane.add(tf)
             fieldList.add(tf)
         }

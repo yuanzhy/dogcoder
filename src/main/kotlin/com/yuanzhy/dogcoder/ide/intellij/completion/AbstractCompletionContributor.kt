@@ -31,8 +31,11 @@ abstract class AbstractCompletionContributor(type: String, protected val insertH
             return
         }
         val position = parameters.originalPosition ?: return
-        beforeCollectElement(parameters)
         val key = position.text.trim()
+        if (key.endsWith(")")) {
+            return
+        }
+        beforeCollectElement(parameters)
         for (template in templateCollection) {
             if (template.isMatch(key)) {
                 val content = getContent(template)

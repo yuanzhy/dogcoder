@@ -6,7 +6,6 @@
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>Dogcoder</name>
-
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
 <!--    <vendor email="yuanzhiyu555@qq.com" url="http://yuanzhy.com">YourCompany</vendor>-->
 
@@ -17,6 +16,7 @@
     代码模板智能提示<br>
     示例代码生成<br>
   ]]></description>
+    <idea-version since-build="191.0"></idea-version>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
