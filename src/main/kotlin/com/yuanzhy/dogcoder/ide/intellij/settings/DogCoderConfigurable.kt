@@ -1,6 +1,5 @@
 package com.yuanzhy.dogcoder.ide.intellij.settings
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.options.SearchableConfigurable
 import com.yuanzhy.dogcoder.ide.intellij.DogCoderPlugin
 import javax.swing.JComponent
@@ -18,6 +17,10 @@ class DogCoderConfigurable : SearchableConfigurable {
     init {
         ui.serviceUrlField.text = settings.serviceUrl
         ui.localPathField.text = settings.localPath
+        ui.syncBtn.addActionListener {
+            settings.lastUpdatedMillis = 0
+            DogCoderPlugin.updateTemplatesAsync()
+        }
     }
     override fun createComponent(): JComponent {
         return ui.rootPane

@@ -12,9 +12,4 @@ class ConfigUI {
     lateinit var rootPane: JPanel
     lateinit var syncBtn: JButton
 
-    init {
-        syncBtn.addActionListener {
-            DogCoderPlugin.updateTemplatesAsync()
-        }
-    }
 }

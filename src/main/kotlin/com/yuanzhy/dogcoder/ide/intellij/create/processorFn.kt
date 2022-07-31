@@ -1,4 +1,4 @@
-package com.yuanzhy.dogcoder.ide.intellij.create.processor
+package com.yuanzhy.dogcoder.ide.intellij.create
 
 import com.intellij.codeInsight.daemon.impl.analysis.JavaHighlightUtil
 import com.intellij.openapi.command.WriteCommandAction

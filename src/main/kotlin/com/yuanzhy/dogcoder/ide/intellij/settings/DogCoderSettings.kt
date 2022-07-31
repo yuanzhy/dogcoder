@@ -1,30 +1,30 @@
 package com.yuanzhy.dogcoder.ide.intellij.settings
 
 import com.intellij.configurationStore.APP_CONFIG
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
+import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
 import com.yuanzhy.dogcoder.ide.intellij.DogCoderPlugin
 import org.jdom.Element
 
 /**
- *
  * @author yuanzhy
  * @date 2022-07-20
  */
 @State(name="DogCoderSettings",
-        storages=[Storage("$APP_CONFIG/DogCoderSettings.xml")])
+        storages=[Storage("$APP_CONFIG/dogcoder/DogCoderSettings.xml")])
 class DogCoderSettings(
         internal var serviceUrl: String = "http://dogcoder.yuanzhy.com",
-        internal var localPath: String = DogCoderPlugin.getPluginPath().toFile().absolutePath,
+        internal var localPath: String = DogCoderPlugin.getConfigPath(),
         internal var lastUpdatedMillis: Long = 0,
 ) : PersistentStateComponent<Element> {
 
     companion object {
 
         fun getInstance(): DogCoderSettings {
-            return ApplicationManager.getApplication().getService(DogCoderSettings::class.java)
+            return ServiceManager.getService(DogCoderSettings::class.java)
+//            return ApplicationManager.getApplication().getService(DogCoderSettings::class.java)
         }
     }
 

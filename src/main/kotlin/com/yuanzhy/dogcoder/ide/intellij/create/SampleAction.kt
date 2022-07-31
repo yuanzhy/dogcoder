@@ -8,11 +8,10 @@ import com.intellij.openapi.ui.DialogWrapper
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.util.io.copy
 import com.yuanzhy.dogcoder.ide.intellij.common.DogCoderUI
-import com.yuanzhy.dogcoder.ide.intellij.create.processor.handleJava
-import com.yuanzhy.dogcoder.ide.intellij.create.processor.handleKt
 import java.awt.GridLayout
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
 import java.util.stream.Collectors
 import javax.swing.JLabel
 import javax.swing.JPanel
@@ -63,7 +62,8 @@ class SampleAction(name: String, private val path: String): AnAction(name) {
                 true
             }
             if (isCreate) {
-                val toPath = toFolder.toNioPath()
+//                val toPath = toFolder.toNioPath()
+                val toPath = Paths.get(toFolder.path)
                 for (i in 0 until children.size) {
                     val cpath = children[i]
                     val tf = fieldList[i]

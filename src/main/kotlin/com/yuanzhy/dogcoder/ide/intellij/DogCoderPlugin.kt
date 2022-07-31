@@ -1,10 +1,8 @@
 package com.yuanzhy.dogcoder.ide.intellij
 
 import com.alibaba.fastjson.JSON
-import com.intellij.ide.plugins.IdeaPluginDescriptor
-import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.openapi.application.ApplicationManager
-import com.intellij.openapi.extensions.PluginId
+import com.intellij.openapi.application.PathManager
 import com.intellij.openapi.progress.ProgressIndicator
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.openapi.progress.Task
@@ -27,15 +25,15 @@ object DogCoderPlugin {
 
     const val PLUGIN_ID = "com.yuanzhy.dogcoder.ide.intellij"
 
-    private val plugin: IdeaPluginDescriptor = PluginManagerCore.getPlugin(PluginId.getId(PLUGIN_ID))!!
-    fun getPlugin(): IdeaPluginDescriptor {
-        return plugin
+    private val CONFIG_PATH = Path.of(PathManager.getOptionsPath(), "dogcoder").toFile().absolutePath
+
+    fun getPluginPath(): Path {
+        return Path(PathManager.getPluginsPath(), "dogcoder")
     }
 
-//    fun getVersion(): String = getPlugin().version
-    fun getPluginPath(): Path = getPlugin().pluginPath
-
-//    fun getPluginPath(): Path = Path.of("E:\\yuanzhy\\localRepository\\dogcoder\\src\\main\\resources\\")
+    fun getConfigPath(): String {
+        return CONFIG_PATH
+    }
 
     fun updateTemplatesAsync() {
         ProgressManager.getInstance().run(object: Task.Backgroundable(null, "DogCoder data init...") {

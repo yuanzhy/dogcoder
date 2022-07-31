@@ -4,12 +4,8 @@ import com.alibaba.fastjson.JSONArray
 import com.intellij.codeInsight.completion.CompletionParameters
 import com.intellij.codeInsight.completion.InsertionContext
 import com.intellij.codeInsight.lookup.LookupElement
-import com.intellij.psi.JavaPsiFacade
-import com.intellij.psi.PsiFile
-import com.intellij.psi.PsiJavaFile
-import com.intellij.psi.PsiMethod
+import com.intellij.psi.*
 import com.intellij.psi.search.GlobalSearchScope
-import com.intellij.psi.util.findParentInFile
 import com.yuanzhy.dogcoder.ide.intellij.common.model.Template
 import com.yuanzhy.dogcoder.ide.intellij.completion.AbstractCompletionContributor
 
@@ -57,4 +53,19 @@ class JavaCompletionContributor : AbstractCompletionContributor("java",
             "// ${template.name}\n${template.content}"
         }
     }
+}
+
+inline fun PsiElement.findParentInFile(withSelf: Boolean = false, predicate: (PsiElement) -> Boolean): PsiElement? {
+    var current = when {
+        withSelf -> this
+        this is PsiFile -> return null
+        else -> parent
+    }
+
+    while (current != null) {
+        if (predicate(current)) return current
+        if (current is PsiFile) break
+        current = current.parent
+    }
+    return null
 }

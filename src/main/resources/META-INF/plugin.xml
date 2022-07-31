@@ -16,7 +16,7 @@
     代码模板智能提示<br>
     示例代码生成<br>
   ]]></description>
-    <idea-version since-build="201.0"></idea-version>
+    <idea-version since-build="191"></idea-version>
 
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
