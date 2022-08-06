@@ -1,10 +1,1 @@
-{
-  "prefix": "fetch",
-  "suffix": "",
-  "desc": "fetch('url').then()",
-  "labels": [
-    "ajax",
-    "http",
-    "get"
-  ]
-}
+{"prefix":"fetch","desc":"fetch('url').then()","labels":["ajax","http","get"]}

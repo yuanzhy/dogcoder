@@ -10,7 +10,6 @@ import com.intellij.util.io.copy
 import com.yuanzhy.dogcoder.ide.intellij.common.DogCoderUI
 import java.awt.GridLayout
 import java.nio.file.Files
-import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.stream.Collectors
 import javax.swing.JLabel
@@ -29,7 +28,7 @@ class SampleAction(name: String, private val path: String): AnAction(name) {
         val vf = e.getData(LangDataKeys.VIRTUAL_FILE) ?: return DogCoderUI.showInfo("请选择目录")
         val project = e.project ?: return DogCoderUI.showInfo("project获取失败")
         val toFolder = if (vf.isDirectory) vf else vf.parent
-        val children = Files.list(Path.of(path)).collect(Collectors.toList())
+        val children = Files.list(Paths.get(path)).collect(Collectors.toList())
         if (children.isEmpty()) {
             return DogCoderUI.showInfo("暂未实现")
         }

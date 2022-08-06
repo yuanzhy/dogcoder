@@ -32,7 +32,7 @@ abstract class AbstractCompletionContributor(type: String, protected val insertH
         }
         val position = parameters.originalPosition ?: return
         val key = position.text.trim()
-        if (key.endsWith(")")) {
+        if (key.endsWith(")") || key.endsWith(".")) {
             return
         }
         beforeCollectElement(parameters)

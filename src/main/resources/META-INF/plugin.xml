@@ -7,14 +7,20 @@
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
     <name>Dogcoder</name>
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-<!--    <vendor email="yuanzhiyu555@qq.com" url="http://yuanzhy.com">YourCompany</vendor>-->
+    <vendor email="yuanzhiyu0512@qq.com" url="http://dogcoder.yuanzhy.com">yuanzhy</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    代码模板智能提示<br>
-    示例代码生成<br>
+    A code tool, Providers Code snippet auto completion and sample code creation <br>
+    <br>
+    1. code completion: Automatically prompt frequently-used code snippets, such as RSA encryption and decryption, HTTP request, etc  <br>
+    2. Create sample codes: The context menu on project view provides an action group to create new sample code, such as design pattern example code  <br>
+    <br>
+    The code snippet and sample code are from the server, It can add new sample codes at any time <br>
+    <br>
+    support Java, Kotlin, JavaScript, Go
   ]]></description>
     <idea-version since-build="191"></idea-version>
 
@@ -22,8 +28,8 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.java</depends>
     <depends>com.intellij.modules.xml</depends>
+    <depends optional="true">com.intellij.modules.java</depends>
     <depends optional="true">org.jetbrains.kotlin</depends>
     <depends optional="true">org.jetbrains.plugins.yaml</depends>
     <depends optional="true">org.jetbrains.plugins.go</depends>

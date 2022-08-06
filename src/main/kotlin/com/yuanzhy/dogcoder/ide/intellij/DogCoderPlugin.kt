@@ -9,10 +9,12 @@ import com.intellij.openapi.progress.Task
 import com.intellij.util.io.createDirectories
 import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettings
 import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettingsListener
+import org.apache.commons.io.FileUtils
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClients
 import org.apache.http.util.EntityUtils
 import org.slf4j.LoggerFactory
+import java.io.File
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
@@ -25,7 +27,7 @@ object DogCoderPlugin {
 
     const val PLUGIN_ID = "com.yuanzhy.dogcoder.ide.intellij"
 
-    private val CONFIG_PATH = Path.of(PathManager.getOptionsPath(), "dogcoder").toFile().absolutePath
+    private val CONFIG_PATH = File(PathManager.getOptionsPath(), "dogcoder").absolutePath
 
     fun getPluginPath(): Path {
         return Path(PathManager.getPluginsPath(), "dogcoder")
@@ -52,6 +54,9 @@ object DogCoderPlugin {
         try {
             val templateResponse = httpClient.execute(templateGet)
             val tArray = JSON.parseArray(EntityUtils.toString(templateResponse.entity))
+            if (settings.lastUpdatedMillis == 0L && tArray.isNotEmpty()) {
+                FileUtils.deleteQuietly(File(settings.localPath, "templates"))
+            }
             val templateFolder = Path(settings.localPath, "templates")
             for (i in 0 until tArray.size) {
                 val json = tArray.getJSONObject(i)
@@ -75,6 +80,9 @@ object DogCoderPlugin {
             // samples
             val sampleResponse = httpClient.execute(sampleGet)
             val sArray = JSON.parseArray(EntityUtils.toString(sampleResponse.entity))
+            if (settings.lastUpdatedMillis == 0L && sArray.isNotEmpty()) {
+                FileUtils.deleteQuietly(File(settings.localPath, "samples"))
+            }
             val sampleFolder = Path(settings.localPath, "samples")
             for (i in 0 until sArray.size) {
                 val json = sArray.getJSONObject(i)

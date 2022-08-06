@@ -1,6 +1,5 @@
 package com.yuanzhy.dogcoder.ide.intellij.create
 
-import com.intellij.codeInsight.daemon.impl.analysis.JavaHighlightUtil
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
@@ -21,7 +20,7 @@ val handleJava = fun(vFile: VirtualFile, project: Project) {
     val psiFile = PsiManager.getInstance(project).findFile(vFile)
     if (psiFile is PsiJavaFile) {
         if (FileTypeUtils.isInServerPageFile(psiFile)) return
-        if (JavaHighlightUtil.isJavaHashBangScript(psiFile)) return
+//        if (JavaHighlightUtil.isJavaHashBangScript(psiFile)) return
         val directory: PsiDirectory = psiFile.getContainingDirectory() ?: return
         val dirPackage = JavaDirectoryService.getInstance().getPackage(directory) ?: return
 //        val packageStatement = psiFile.packageStatement

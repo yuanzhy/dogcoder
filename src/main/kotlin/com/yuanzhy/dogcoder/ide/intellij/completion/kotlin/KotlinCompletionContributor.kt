@@ -5,9 +5,9 @@ import com.intellij.codeInsight.completion.InsertionContext
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.psi.PsiFile
 import com.yuanzhy.dogcoder.ide.intellij.completion.AbstractCompletionContributor
-import org.jetbrains.kotlin.name.FqName
-import org.jetbrains.kotlin.nj2k.NewJavaToKotlinConverter.Companion.addImports
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.KtPsiFactory
+import org.jetbrains.kotlin.resolve.ImportPath
 
 /**
  *
@@ -22,6 +22,10 @@ class KotlinCompletionContributor : AbstractCompletionContributor("kotlin",
                     return
                 }
                 psiFile as KtFile
-                psiFile.addImports(obj.map { FqName(it.toString()) })
+                val psiFactory = KtPsiFactory(psiFile.project)
+                obj.map {
+                    val ktImport = psiFactory.createImportDirective(ImportPath.fromString(it.toString()))
+                    psiFile.importList?.add(ktImport)
+                }
             }
 })

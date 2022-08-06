@@ -1,11 +1,1 @@
-{
-  "prefix": "pod",
-  "suffix": "",
-  "desc": "kubernetes.pod",
-  "labels": [
-    "kubernetes",
-    "k8s",
-    "ks",
-    "docker"
-  ]
-}
+{"prefix":"pod","desc":"kubernetes.pod","labels":["kubernetes","k8s","ks","docker"]}

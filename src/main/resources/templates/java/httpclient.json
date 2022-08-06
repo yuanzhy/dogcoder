@@ -1,11 +1,1 @@
-{
-  "prefix": "httpclient.",
-  "suffix": "get",
-  "desc": "HttpClient.execute(HttpGet())",
-  "labels": [],
-  "imports": [
-    "org.apache.http.HttpResponse",
-    "org.apache.http.client.HttpClient",
-    "org.apache.http.client.methods.HttpGet"
-  ]
-}
+{"imports":["org.apache.http.HttpResponse","org.apache.http.client.HttpClient","org.apache.http.client.methods.HttpGet"],"prefix":"httpclient.","suffix":"get","desc":"HttpClient.execute(HttpGet())"}

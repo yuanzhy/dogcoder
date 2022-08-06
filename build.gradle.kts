@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.yuanzhy.dogcoder"
-version = "1.0-SNAPSHOT"
+version = "0.1"
 
 repositories {
     mavenLocal()
