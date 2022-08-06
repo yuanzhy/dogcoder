@@ -36,7 +36,7 @@
 ## 如何贡献
 
 - 依赖 JDK11+, Intellij IDEA 2021+
-- 导入项目到 Intellij
+- 导入项目到 IntelliJ
 - 运行gradle任务runIde
 
 ## 使用许可

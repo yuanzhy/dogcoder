@@ -36,7 +36,7 @@ support following product build version > 2019.1
 ## Contributing
 
 - required JDK11+, Intellij IDEA 2021+
-- import the project to Intellij
+- import the project to IntelliJ
 - add a gradle task runIde
 - change the code and run the task to see the change
 
