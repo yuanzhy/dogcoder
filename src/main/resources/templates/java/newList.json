@@ -1,1 +1,0 @@
-{"imports":["java.util.List","java.util.ArrayList"],"prefix":"List","desc":"List<Object> list = new ArrayList<>()","labels":["arrayList","newList"]}

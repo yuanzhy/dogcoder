@@ -1,9 +1,0 @@
-{
-  "prefix": "axios.",
-  "suffix": "all",
-  "desc": "axios.all([...]).then()",
-  "labels": [
-    "ajax",
-    "http"
-  ]
-}

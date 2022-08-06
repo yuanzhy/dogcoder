@@ -1,1 +1,0 @@
-{"imports":["java.awt.Graphics","java.awt.Image","java.awt.image.BufferedImage","java.io.ByteArrayOutputStream","javax.imageio.ImageIO"],"prefix":"compressImage","desc":"Equally compressed pictures"}

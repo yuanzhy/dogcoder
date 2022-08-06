@@ -1,1 +1,0 @@
-{"imports":["java.util.Map","java.util.HashMap"],"prefix":"Map","desc":"Map<String, Object> map = new HashMap<>()"}

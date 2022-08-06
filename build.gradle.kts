@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "com.yuanzhy.dogcoder"
-version = "0.1"
+version = "0.1.1"
 
 repositories {
     mavenLocal()
@@ -61,7 +61,8 @@ tasks {
     }
 
     publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        val pushToken = project.rootProject.file("pushtoken.ini").readText()
+        token.set(pushToken)
     }
 
     runIde {

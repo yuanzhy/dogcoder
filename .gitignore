@@ -44,4 +44,4 @@ bin/
 .idea/
 .idea/gradle.xml
 .idea/misc.xml
-jvm.ini
+/*.ini
