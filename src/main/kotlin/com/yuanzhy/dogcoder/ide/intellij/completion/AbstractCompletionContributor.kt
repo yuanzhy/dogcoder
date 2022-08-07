@@ -1,11 +1,7 @@
 package com.yuanzhy.dogcoder.ide.intellij.completion
 
 import com.intellij.codeInsight.actions.ReformatCodeProcessor
-import com.intellij.codeInsight.completion.CompletionContributor
-import com.intellij.codeInsight.completion.CompletionParameters
-import com.intellij.codeInsight.completion.CompletionResultSet
-import com.intellij.codeInsight.completion.InsertHandler
-import com.intellij.codeInsight.completion.InsertionContext
+import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.module.ModuleUtil
@@ -32,7 +28,7 @@ abstract class AbstractCompletionContributor(type: String, protected val insertH
         }
         val position = parameters.originalPosition ?: return
         val key = position.text.trim()
-        if (key.endsWith(")") || key.endsWith(".")) {
+        if (key.isEmpty() || key.endsWith(")")) {
             return
         }
         beforeCollectElement(parameters)
@@ -59,7 +55,7 @@ abstract class AbstractCompletionContributor(type: String, protected val insertH
     }
 
     protected open fun supports(parameters: CompletionParameters): Boolean {
-        return true
+        return parameters.completionType == CompletionType.BASIC
     }
 
     protected open fun beforeCollectElement(parameters: CompletionParameters) {

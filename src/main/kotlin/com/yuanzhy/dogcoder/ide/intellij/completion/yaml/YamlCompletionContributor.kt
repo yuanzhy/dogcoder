@@ -11,6 +11,6 @@ import com.yuanzhy.dogcoder.ide.intellij.completion.AbstractCompletionContributo
 class YamlCompletionContributor : AbstractCompletionContributor("yaml") {
 
     override fun supports(parameters: CompletionParameters): Boolean {
-        return !parameters.originalFile.name.startsWith("application")
+        return super.supports(parameters) && !parameters.originalFile.name.startsWith("application")
     }
 }
