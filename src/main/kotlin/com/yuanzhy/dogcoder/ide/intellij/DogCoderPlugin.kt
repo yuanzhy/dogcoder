@@ -9,7 +9,6 @@ import com.intellij.openapi.progress.Task
 import com.intellij.util.io.createDirectories
 import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettings
 import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettingsListener
-import org.apache.commons.io.FileUtils
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClients
 import org.apache.http.util.EntityUtils
@@ -55,7 +54,7 @@ object DogCoderPlugin {
             val templateResponse = httpClient.execute(templateGet)
             val tArray = JSON.parseArray(EntityUtils.toString(templateResponse.entity))
             if (settings.lastUpdatedMillis == 0L && tArray.isNotEmpty()) {
-                FileUtils.deleteQuietly(File(settings.localPath, "templates"))
+                deleteDirectory(File(settings.localPath, "templates"))
             }
             val templateFolder = Path(settings.localPath, "templates")
             for (i in 0 until tArray.size) {
@@ -81,7 +80,7 @@ object DogCoderPlugin {
             val sampleResponse = httpClient.execute(sampleGet)
             val sArray = JSON.parseArray(EntityUtils.toString(sampleResponse.entity))
             if (settings.lastUpdatedMillis == 0L && sArray.isNotEmpty()) {
-                FileUtils.deleteQuietly(File(settings.localPath, "samples"))
+                deleteDirectory(File(settings.localPath, "samples"))
             }
             val sampleFolder = Path(settings.localPath, "samples")
             for (i in 0 until sArray.size) {
@@ -112,5 +111,15 @@ object DogCoderPlugin {
     private fun createFile(path: Path): Path {
         path.parent?.createDirectories()
         return Files.createFile(path)
+    }
+
+    private fun deleteDirectory(file: File) {
+        val list = file.listFiles() //无法做到list多层文件夹数据
+        if (list != null) {
+            for (temp in list) { //先去递归删除子文件夹及子文件
+                deleteDirectory(temp) //注意这里是递归调用
+            }
+        }
+        file.delete()
     }
 }
