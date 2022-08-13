@@ -22,6 +22,7 @@ class SampleAction(name: String, private val path: String): AnAction(name) {
     private val handlerMap = mapOf(
             Pair("java", handleJava),
             Pair("kt", handleKt),
+            Pair("go", handleGo),
     )
 
     override fun actionPerformed(e: AnActionEvent) {
@@ -69,8 +70,9 @@ class SampleAction(name: String, private val path: String): AnAction(name) {
                     cpath.copy(toPath.resolve(tf.text.trim()))
                 }
                 toFolder.refresh(false, true)
+                val createdNames = children.map { it.name }
                 VfsUtilCore.processFilesRecursively(toFolder) {
-                    if (!it.isDirectory) {
+                    if (!it.isDirectory && createdNames.contains(it.name)) {
                         val fn = handlerMap[it.extension]
                         if (fn != null) {
                             try {

@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.util.PlatformUtils
 import com.intellij.util.io.exists
 import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettings
 import com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettingsListener
@@ -38,7 +39,9 @@ class NewGroup: ActionGroup() {
             if (path.exists()) {
                 try {
                     for(c in Files.list(path)) {
-                        recursive(c, list)
+                        if (supports(c)) {
+                            recursive(c, list)
+                        }
                     }
                 } catch (e: Exception) {
                     logger.warn("获取模板失败：${e.message}")
@@ -47,6 +50,26 @@ class NewGroup: ActionGroup() {
             }
             children = list.toTypedArray()
         }
+    }
+
+    private fun supports(path: Path): Boolean {
+        if (PlatformUtils.isIdeaUltimate()) {
+            return true
+        }
+        val name = path.name
+        if (name == "javascript" && !PlatformUtils.isWebStorm()) {
+            return false
+        }
+        if (name == "go" && !PlatformUtils.isGoIde()) {
+            return false
+        }
+        if (name == "python" && !PlatformUtils.isPyCharm()) {
+            return false
+        }
+        if (name == "java" && !PlatformUtils.isIntelliJ()) {
+            return false
+        }
+        return true
     }
 
     private fun recursive(path: Path, list: MutableList<AnAction>) {
