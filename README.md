@@ -1,5 +1,7 @@
 # DogCoder - IntelliJ plugin
 
+#### [English](README.md) | [中文](README_CN.md)
+
 A code tool, Providers Code snippet auto completion and sample code creation
 
 1. code completion: Automatically prompt frequently-used code snippets, such as RSA encryption and decryption, HTTP request, etc.

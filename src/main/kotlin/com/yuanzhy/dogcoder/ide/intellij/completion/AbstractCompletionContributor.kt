@@ -5,6 +5,7 @@ import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.module.ModuleUtil
+import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiFile
 import com.yuanzhy.dogcoder.ide.intellij.common.DcIcons
@@ -27,9 +28,16 @@ abstract class AbstractCompletionContributor(type: String, protected val insertH
             return
         }
         val position = parameters.originalPosition ?: return
-        val key = position.text.trim()
-        if (key.isEmpty() || key.endsWith(")")) {
+        val document = parameters.editor.document
+        val line = document.getLineNumber(parameters.offset)
+        val range = TextRange(document.getLineStartOffset(line), document.getLineEndOffset(line))
+        var key = document.getText(range).trim()
+//        val key = position.text.trim()
+        if (/*key.isEmpty() ||*/ key.endsWith(")")) {
             return
+        }
+        if (key.contains(" ")) {
+            key = key.substringAfterLast(" ").trim();
         }
         beforeCollectElement(parameters)
         for (template in templateCollection) {

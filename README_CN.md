@@ -1,5 +1,7 @@
 # DogCoder - IntelliJ 插件
 
+#### [English](README.md) | [中文](README_CN.md)
+
 代码工具，提供代码片段的自动提示补全和示例代码的创建
 
 1. 代码提示补全：自动提示常用的代码片段，如RSA加解密、HTTP请求等

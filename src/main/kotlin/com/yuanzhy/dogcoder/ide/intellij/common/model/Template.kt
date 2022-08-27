@@ -15,15 +15,22 @@ data class Template(
         if (keyword.isEmpty()) {
             return true
         }
-        val kw = keyword.replace(".", "")
-        val contains = name.contains(kw, true)
-                || prefix.contains(kw, true)
-                || suffix.contains(kw, true)
-                || labels.any { it.contains(kw, true) }
-        if (contains) {
-            return true
+        val containsPoint = keyword.contains(".")
+        val contains = if (containsPoint) {
+            name.contains(keyword, true)
+        } else {
+            name.contains(keyword, true)
+                    || prefix.contains(keyword, true)
+                    || suffix.contains(keyword, true)
+                    || labels.any { it.contains(keyword, true) }
         }
-        return fuzzyMatch(kw)
+        return if (contains) {
+            true
+        } else if (containsPoint) {
+            false
+        } else {
+            fuzzyMatch(keyword)
+        }
     }
 
     /**
