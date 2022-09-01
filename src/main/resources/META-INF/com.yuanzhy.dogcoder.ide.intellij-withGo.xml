@@ -1,0 +1,7 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.go.GoCompletionContributor"
+                language="go" order="first"/>
+    </extensions>
+</idea-plugin>

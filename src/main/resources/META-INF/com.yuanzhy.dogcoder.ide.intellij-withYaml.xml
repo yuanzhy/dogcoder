@@ -1,0 +1,7 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+        <completion.contributor
+                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.yaml.YamlCompletionContributor"
+                language="yaml" order="first"/>
+    </extensions>
+</idea-plugin>

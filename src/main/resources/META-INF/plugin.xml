@@ -45,37 +45,19 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>com.intellij.modules.xml</depends>
-    <depends optional="true">com.intellij.modules.java</depends>
-    <depends optional="true">org.jetbrains.kotlin</depends>
-    <depends optional="true">org.jetbrains.plugins.yaml</depends>
-    <depends optional="true">org.jetbrains.plugins.go</depends>
+    <depends optional="true" config-file="com.yuanzhy.dogcoder.ide.intellij-withJava.xml">com.intellij.modules.java</depends>
+    <depends optional="true" config-file="com.yuanzhy.dogcoder.ide.intellij-withKotlin.xml">org.jetbrains.kotlin</depends>
+    <depends optional="true" config-file="com.yuanzhy.dogcoder.ide.intellij-withYaml.xml">org.jetbrains.plugins.yaml</depends>
+    <depends optional="true" config-file="com.yuanzhy.dogcoder.ide.intellij-withGo.xml">org.jetbrains.plugins.go</depends>
     <!--<depends optional="true">org.jetbrains.plugins.vue</depends>-->
-    <depends optional="true">Pythonid</depends>
-    <depends optional="true">JavaScript</depends>
+    <depends optional="true" config-file="com.yuanzhy.dogcoder.ide.intellij-withPython.xml">Pythonid</depends>
+    <depends optional="true" config-file="com.yuanzhy.dogcoder.ide.intellij-withJavaScript.xml">JavaScript</depends>
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.yuanzhy.dogcoder.ide.intellij.startup.UpdateTemplateStartupActivity" />
         <applicationConfigurable instance="com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderConfigurable" />
         <applicationService serviceImplementation="com.yuanzhy.dogcoder.ide.intellij.settings.DogCoderSettings" />
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.js.JavascriptCompletionContributor"
-                language="JavaScript" order="first"/>
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.java.JavaCompletionContributor"
-                language="JAVA" order="first"/>
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.yaml.YamlCompletionContributor"
-                language="yaml" order="first"/>
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.go.GoCompletionContributor"
-                language="go" order="first"/>
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.kotlin.KotlinCompletionContributor"
-                language="kotlin" order="first"/>
-        <completion.contributor
-                implementationClass="com.yuanzhy.dogcoder.ide.intellij.completion.python.PythonCompletionContributor"
-                language="Python" order="first"/>
     </extensions>
     <actions>
         <group id="DogCoderNew" text="New DogCoder" popup="true"

@@ -1,6 +1,5 @@
 package com.yuanzhy.dogcoder.ide.intellij.create
 
-import com.goide.psi.GoFile
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtilCore
@@ -52,8 +51,8 @@ val handleKt = fun(vFile: VirtualFile, project: Project) {
 }
 
 val handleGo = fun(vFile: VirtualFile, project: Project) {
-    val psiFile = PsiManager.getInstance(project).findFile(vFile)
-    if (psiFile is GoFile) {
+    val psiFile = PsiManager.getInstance(project).findFile(vFile) ?: return
+    if (vFile.extension == "go") {
         val pFile = vFile.parent ?: return
         val directory: PsiDirectory = psiFile.containingDirectory ?: return
         var packageName: String? = ""
@@ -62,11 +61,16 @@ val handleGo = fun(vFile: VirtualFile, project: Project) {
                 if (sFile == vFile || sFile.extension != "go") {
                     continue
                 }
-                val otherPsiFile = PsiManager.getInstance(project).findFile(sFile) as GoFile
-                if (otherPsiFile.packageName.isNullOrEmpty()) {
-                    continue
+                val otherPsiFile = PsiManager.getInstance(project).findFile(sFile) ?: continue
+                try {
+                    val method = otherPsiFile::class.java.getDeclaredMethod("getPackageName")
+                    packageName = method.invoke(otherPsiFile) as String
+                    if (packageName.isNullOrEmpty()) {
+                        continue
+                    }
+                } catch (e: Exception) {
+                    break
                 }
-                packageName = otherPsiFile.packageName
             }
         }
         if (packageName.isNullOrEmpty()) {
